@@ -1,0 +1,17 @@
+version: "3.6"
+services:
+
+  jupyter:
+    build:
+      context: .
+    volumes:
+      - "./notebooks:/mnt/notebooks"
+    working_dir: "/mnt/notebooks"
+    environment:
+      JUPYTER_ENABLE_LAB: "yes"
+    entrypoint: "/bin/bash -c"
+    command:
+      - |
+        jupyter notebook
+    ports:
+      - ${JUPYTER_PORT:-8888}:8888
